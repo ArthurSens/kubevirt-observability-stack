@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: Prometheus
+metadata: 
+  name: kubevirt-prometheus
+spec: 
+  version: v2.22.0
+  image: quay.io/prometheus/prometheus:v2.22.0
+  ruleSelector: 
+    matchLabels: 
+      prometheus.rules/for: kubevirt
+  serviceMonitorSelector: 
+    matchLabels: 
+      prometheus.servicemonitor/of: kubevirt
+  serviceAccountName: prometheus-serviceaccount
+  resources: 
+    requests: 
+      memory: 400Mi
+  logLevel: debug

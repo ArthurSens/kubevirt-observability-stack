@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: grafana
+spec: 
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: grafana
+  template: 
+    metadata: 
+      name: grafana
+      labels: 
+        app: grafana
+    spec: 
+      containers: 
+        - name: grafana
+          image: grafana/grafana:7.3.0
+          env: 
+            - name: GF_AUTH_ANONYMOUS_ENABLED
+              value: "true"
+            - name: GF_AUTH_ANONYMOUS_ORG_ROLE
+              value: "Admin"
+            - name: GF_AUTH_DISABLE_LOGIN_FORM
+              value: "true"
+          volumeMounts: 
+            - name: dashboard-provisioning-config
+              mountPath: /etc/grafana/provisioning/dashboards/
+            - name: datasources-provisioning-config
+              mountPath: /etc/grafana/provisioning/datasources/
+            - name: kubevirt-components-dashboard
+              mountPath: /dashboards
+      volumes: 
+        - name: dashboard-provisioning-config
+          configMap: 
+            name: kubevirt-provisioning
+            items: 
+            - key: dashboards-provisioning-config.yml
+              path: dashboards.yml
+        - name: datasources-provisioning-config
+          configMap: 
+            name: kubevirt-provisioning
+            items: 
+            - key: datasources-provisioning-config.yml
+              path: datasources.yml
+        - name: kubevirt-components-dashboard
+          configMap: 
+            name: kubevirt-provisioning
+            items: 
+            - key: kubevirt-components.json
+              path: kubevirt-components.json
