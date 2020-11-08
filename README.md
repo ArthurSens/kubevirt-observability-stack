@@ -10,5 +10,4 @@ This repository's objective is to provide an observability stack, configured to 
 
 ## Roadmap
 
-* Deployment automation via Make
 * Jsonnet 

@@ -591,10 +591,10 @@ data:
           },
           "id": 32,
           "options": {
-            "showLabels": true,
+            "showLabels": false,
             "showTime": true,
             "sortOrder": "Descending",
-            "wrapLogMessage": true
+            "wrapLogMessage": false
           },
           "pluginVersion": "7.3.0",
           "targets": [
