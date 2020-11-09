@@ -11,7 +11,7 @@ loki:
 	hack/install-loki.sh
 
 grafana: 
-	kubectl apply -f grafana/
+	hack/install-grafana.sh
 
 kubevirt-o11y-stack:
 	$(MAKE) prometheus

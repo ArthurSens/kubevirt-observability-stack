@@ -13,6 +13,7 @@ spec:
       prometheus.kubevirt.io: ""
   endpoints: 
   - port: metrics
+    honorLabels: true
     interval: 30s
     scheme: https
     tlsConfig:
