@@ -35,14 +35,16 @@ spec:
           configMap: 
             name: kubevirt-provisioning
             items: 
-            - key: dashboards-provisioning-config.yml
+            - key: dashboards-provisioning.yml
               path: dashboards.yml
+
         - name: datasources-provisioning-config
           configMap: 
             name: kubevirt-provisioning
             items: 
-            - key: datasources-provisioning-config.yml
+            - key: datasources-provisioning.yml
               path: datasources.yml
+
         - name: kubevirt-dashboards
           configMap: 
             name: kubevirt-provisioning
